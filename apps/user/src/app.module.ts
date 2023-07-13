@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ProxyModule } from './proxy/proxy.module';
 import { UserModule } from './user/user.module';
-import { ClientProxyFlightReservations } from './proxy/client-proxy-flight-reservations.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmConfigService } from './config/typeorm/typeorm.config';
 
 @Module({
   imports: [
@@ -10,10 +10,13 @@ import { ClientProxyFlightReservations } from './proxy/client-proxy-flight-reser
       isGlobal: true,
       envFilePath: ['.env.development'],
     }),
-    ProxyModule,
+    TypeOrmModule.forRootAsync({
+      useClass: TypeOrmConfigService,
+      imports: [ConfigModule],
+    }),
     UserModule,
   ],
   controllers: [],
-  providers: [ClientProxyFlightReservations],
+  providers: [],
 })
-export class ApiGatewayModule {}
+export class AppModule {}

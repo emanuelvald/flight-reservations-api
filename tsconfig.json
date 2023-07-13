@@ -17,6 +17,13 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "paths": {}
+    "paths": {
+      "@flight-reservations-api/common": [
+        "libs/common/src"
+      ],
+      "@flight-reservations-api/common/*": [
+        "libs/common/src/*"
+      ]
+    }
   }
 }
