@@ -1,0 +1,8 @@
+export enum UserMessagePattern {
+  CREATE = 'CREATE_USER',
+  FIND_ALL = 'FIND_ALL_USER',
+  FIND_ONE_BY_ID = 'FIND_ONE_USER_BY_ID',
+  VALIDATE = 'VALIDATE_USER',
+  UPDATE = 'UPDATE_USER',
+  DELETE = 'DELETE_USER',
+}
