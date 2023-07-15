@@ -11,6 +11,16 @@ import { ProxyQueues } from '@flight-reservations-api/common';
 export class ClientProxyFlightReservations {
   constructor(private readonly configService: ConfigService) {}
 
+  auth(): ClientProxy {
+    return ClientProxyFactory.create({
+      transport: Transport.RMQ,
+      options: {
+        urls: this.configService.get('AMQP_URL'),
+        queue: ProxyQueues.AUTH,
+      },
+    });
+  }
+
   user(): ClientProxy {
     return ClientProxyFactory.create({
       transport: Transport.RMQ,
