@@ -1,12 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-import { ApiGatewayModule } from './api-gateway.module';
+import { AppModule } from './app.module';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
   const configService: Record<string, any> = new ConfigService();
-  const app: INestApplication = await NestFactory.create(ApiGatewayModule);
+  const app: INestApplication = await NestFactory.create(AppModule);
 
   app
     .useGlobalPipes(

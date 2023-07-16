@@ -22,11 +22,11 @@ export class UserService {
 
     const hashedPassword: string = await getHashedPassword(password);
 
-    const newUser: User = new User();
-    newUser.email = email;
-    newUser.password = hashedPassword;
+    const user: User = new User();
+    user.email = email;
+    user.password = hashedPassword;
 
-    return await this.userRepository.create(createUserDto);
+    return await this.userRepository.create(user);
   }
 
   findAll() {
@@ -35,6 +35,10 @@ export class UserService {
 
   findOne(id: number) {
     return `This action returns a #${id} user`;
+  }
+
+  async findOneByEmail(email: string): Promise<any> {
+    return await this.userRepository.findOneByEmail(email);
   }
 
   async validate(property: string, value: string): Promise<boolean> {

@@ -1,3 +1,4 @@
 export enum ProxyQueues {
-  USER = 'users',
+  USER = 'user',
+  AUTH = 'auth',
 }
