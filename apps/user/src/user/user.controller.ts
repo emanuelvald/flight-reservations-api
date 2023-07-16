@@ -6,7 +6,6 @@ import {
   UpdateUserDto,
   UserMessagePattern,
 } from '@flight-reservations-api/common';
-import { UpdateUserPasswordDto } from '@flight-reservations-api/common/dto/user/update-user-password.dto';
 
 @Controller()
 export class UserController {
@@ -35,13 +34,6 @@ export class UserController {
   @MessagePattern(UserMessagePattern.UPDATE)
   update(@Payload() updateUserDto: UpdateUserDto) {
     return this.userService.update(updateUserDto.id, updateUserDto);
-  }
-
-  @MessagePattern(UserMessagePattern.UPDATE_PASSWORD)
-  updateUserPasswordByEmail(
-    @Payload() updateUserPasswordDto: UpdateUserPasswordDto,
-  ): Promise<any> {
-    return this.userService.updateUserPasswordByEmail(updateUserPasswordDto);
   }
 
   @MessagePattern(UserMessagePattern.DELETE)

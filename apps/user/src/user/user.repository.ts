@@ -53,8 +53,4 @@ export class UserRepository {
         });
       });
   }
-
-  async updateUserPasswordByEmail(email: string, user: User): Promise<any> {
-    return this.userRepository.update({ email: email }, user);
-  }
 }

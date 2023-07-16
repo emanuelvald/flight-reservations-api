@@ -4,7 +4,6 @@ import { CreateUserDto, UpdateUserDto } from '@flight-reservations-api/common';
 import { RpcException } from '@nestjs/microservices';
 import { User } from './user.entity';
 import { getHashedPassword } from './user.util';
-import { UpdateUserPasswordDto } from '@flight-reservations-api/common/dto/user/update-user-password.dto';
 
 @Injectable()
 export class UserService {
@@ -23,11 +22,11 @@ export class UserService {
 
     const hashedPassword: string = await getHashedPassword(password);
 
-    const newUser: User = new User();
-    newUser.email = email;
-    newUser.password = hashedPassword;
+    const user: User = new User();
+    user.email = email;
+    user.password = hashedPassword;
 
-    return await this.userRepository.create(createUserDto);
+    return await this.userRepository.create(user);
   }
 
   findAll() {
@@ -48,18 +47,6 @@ export class UserService {
 
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
-  }
-
-  async updateUserPasswordByEmail(
-    updateUserPasswordDto: UpdateUserPasswordDto,
-  ): Promise<any> {
-    const { email, password } = updateUserPasswordDto;
-    const hashedPassword: string = await getHashedPassword(password);
-    const user: User = new User();
-
-    user.password = hashedPassword;
-
-    return await this.userRepository.updateUserPasswordByEmail(email, user);
   }
 
   remove(id: number) {
