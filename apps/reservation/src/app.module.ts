@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmConfigService } from './config/typeorm/typeorm.config';
 import { ConfigModule } from '@nestjs/config';
-import { ProxyModule } from './proxy/proxy.module';
-import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
-import { ClientProxyFlightReservations } from './proxy/client-proxy-flight-reservations.service';
 import { ReservationModule } from './reservation/reservation.module';
 
 @Module({
@@ -12,12 +10,13 @@ import { ReservationModule } from './reservation/reservation.module';
       isGlobal: true,
       envFilePath: ['.env.development'],
     }),
-    ProxyModule,
-    AuthModule,
+    TypeOrmModule.forRootAsync({
+      useClass: TypeOrmConfigService,
+      imports: [ConfigModule],
+    }),
     ReservationModule,
-    UserModule,
   ],
   controllers: [],
-  providers: [ClientProxyFlightReservations],
+  providers: [],
 })
 export class AppModule {}
