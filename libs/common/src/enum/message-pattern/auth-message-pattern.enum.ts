@@ -1,5 +1,5 @@
 export enum AuthMessagePattern {
   SIGNUP = 'signup',
-  LOGIN = 'login',
+  SIGNIN = 'signin',
   INACTIVE = 'inactive',
 }

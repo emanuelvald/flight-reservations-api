@@ -22,13 +22,13 @@ export class UserController {
   }
 
   @MessagePattern(UserMessagePattern.FIND_ONE_BY_ID)
-  findOne(@Payload() id: number) {
-    return this.userService.findOne(id);
+  findOneById(@Payload() id: number) {
+    return this.userService.findOneById(id);
   }
 
-  @MessagePattern(UserMessagePattern.VALIDATE)
-  validate() {
-    return 'validate user';
+  @MessagePattern(UserMessagePattern.FIND_ONE_BY_EMAIL)
+  findOneByEmail(@Payload() email: string) {
+    return this.userService.findOneByEmail(email);
   }
 
   @MessagePattern(UserMessagePattern.UPDATE)

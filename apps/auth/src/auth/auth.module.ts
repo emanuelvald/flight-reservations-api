@@ -2,11 +2,25 @@ import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { ProxyQueues } from '@flight-reservations-api/common';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
+import { LocalStrategy } from './strategies/local.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
-  imports: [],
+  imports: [
+    PassportModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get('JWT_SECRET'),
+        signOptions: { expiresIn: configService.get('JWT_EXPIRES') },
+      }),
+    }),
+  ],
   controllers: [AuthController],
   providers: [
     AuthService,
@@ -23,6 +37,8 @@ import { ClientProxyFactory, Transport } from '@nestjs/microservices';
         });
       },
     },
+    LocalStrategy,
+    JwtStrategy,
   ],
 })
 export class AuthModule {}
