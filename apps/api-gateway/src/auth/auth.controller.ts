@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import {
   AuthMessagePattern,
   InactiveDto,
-  LoginDto,
-  SignupDto,
+  SignInDto,
+  SignUpDto,
 } from '@flight-reservations-api/common';
 
 @Controller('auth')
@@ -19,13 +19,13 @@ export class AuthController {
   ) {}
 
   @Post(AuthMessagePattern.SIGNUP)
-  signup(@Body() signupDto: SignupDto): Observable<any> {
-    return this._clientProxyAuth.send(AuthMessagePattern.SIGNUP, signupDto);
+  signUp(@Body() signUpDto: SignUpDto): Observable<any> {
+    return this._clientProxyAuth.send(AuthMessagePattern.SIGNUP, signUpDto);
   }
 
-  @Post(AuthMessagePattern.LOGIN)
-  login(@Body() loginDto: LoginDto): Observable<any> {
-    return this._clientProxyAuth.send(AuthMessagePattern.LOGIN, loginDto);
+  @Post(AuthMessagePattern.SIGNIN)
+  signIn(@Body() signInDto: SignInDto): Observable<any> {
+    return this._clientProxyAuth.send(AuthMessagePattern.SIGNIN, signInDto);
   }
 
   @Delete(AuthMessagePattern.INACTIVE)

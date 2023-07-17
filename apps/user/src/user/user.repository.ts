@@ -30,14 +30,12 @@ export class UserRepository {
   }
 
   async findOneByEmail(email: string): Promise<any> {
-    return await this.userRepository
-      .find({ where: { email: email } })
-      .catch(() => {
-        throw new RpcException({
-          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-          message: 'Internal Server Error',
-        });
+    return await this.userRepository.findOneBy({ email: email }).catch(() => {
+      throw new RpcException({
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: 'Internal Server Error',
       });
+    });
   }
 
   async validate(property: string, value: string): Promise<boolean> {

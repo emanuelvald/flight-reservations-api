@@ -11,7 +11,7 @@ import {
   passwordMinLength,
 } from '@flight-reservations-api/common/const/user/user.constant';
 
-export class SignupDto {
+export class SignUpDto {
   @IsNotEmpty()
   @IsEmail()
   email: string;

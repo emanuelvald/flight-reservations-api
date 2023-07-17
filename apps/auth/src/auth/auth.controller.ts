@@ -2,8 +2,8 @@ import { Controller } from '@nestjs/common';
 import {
   AuthMessagePattern,
   InactiveDto,
-  LoginDto,
-  SignupDto,
+  SignInDto,
+  SignUpDto,
 } from '@flight-reservations-api/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { AuthService } from './auth.service';
@@ -13,13 +13,13 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @MessagePattern(AuthMessagePattern.SIGNUP)
-  signup(@Payload() signupDto: SignupDto): Promise<any> {
-    return this.authService.signup(signupDto);
+  signUp(@Payload() signUpDto: SignUpDto): Promise<any> {
+    return this.authService.signUp(signUpDto);
   }
 
-  @MessagePattern(AuthMessagePattern.LOGIN)
-  login(@Payload() loginDto: LoginDto): Promise<any> {
-    return this.authService.login(loginDto);
+  @MessagePattern(AuthMessagePattern.SIGNIN)
+  signIn(@Payload() signInDto: SignInDto): Promise<any> {
+    return this.authService.signIn(signInDto);
   }
 
   @MessagePattern(AuthMessagePattern.INACTIVE)
