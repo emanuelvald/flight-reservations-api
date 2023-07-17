@@ -45,6 +45,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/auth/tsconfig.app.json"
       }
+    },
+    "reservation": {
+      "type": "application",
+      "root": "apps/reservation",
+      "entryFile": "main",
+      "sourceRoot": "apps/reservation/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/reservation/tsconfig.app.json"
+      }
     }
   }
 }

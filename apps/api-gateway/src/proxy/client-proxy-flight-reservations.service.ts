@@ -21,6 +21,16 @@ export class ClientProxyFlightReservations {
     });
   }
 
+  reservation(): ClientProxy {
+    return ClientProxyFactory.create({
+      transport: Transport.RMQ,
+      options: {
+        urls: this.configService.get('AMQP_URL'),
+        queue: ProxyQueues.RESERVATION,
+      },
+    });
+  }
+
   user(): ClientProxy {
     return ClientProxyFactory.create({
       transport: Transport.RMQ,
