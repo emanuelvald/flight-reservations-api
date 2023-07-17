@@ -18,8 +18,8 @@ export class AuthController {
   }
 
   @MessagePattern(AuthMessagePattern.SIGNIN)
-  signIn(@Payload() logInDto: SignInDto): Promise<any> {
-    return this.authService.signIn(logInDto);
+  signIn(@Payload() signInDto: SignInDto): Promise<any> {
+    return this.authService.signIn(signInDto);
   }
 
   @MessagePattern(AuthMessagePattern.INACTIVE)
