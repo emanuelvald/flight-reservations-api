@@ -1,11 +1,6 @@
-# Example for pull request and the changes.
-Airline reservation systems are systems that allow an airline to sell their inventory. It contains information on schedules and fares and contains a database of reservations and of tickets issued.  It contains information on schedules and fares and contains a database of reservations (or passenger name records) and of tickets issued.
-# This is the changes you requested for.
-
 # Flight Reservations API
 
-A monorepo microservices application to manage flight reservations created
-with [@NestJS](https://github.com/nestjs/nest)
+Airline reservation systems are systems that allow an airline to sell its inventory. It contains information on schedules and fares and contains a database of reservations and tickets issued.  It contains information on schedules and fares and contains a database of reservations (or passenger name records) and tickets issued.
 
 ## Services
 
